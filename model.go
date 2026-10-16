@@ -16,7 +16,7 @@ type model struct {
 	width int 
 	height int 
 }
-var menuItems = []string{"About Me", "Logs", "Projects", "Resume", "Contact"}
+var menueItems= []string{"About Me", "Logs", "Projects", "Contact"}
 
 func NewModel() model {
 	return model{

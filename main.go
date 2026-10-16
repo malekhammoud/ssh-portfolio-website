@@ -1,15 +1,16 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"os"
+
 	tea "github.com/charmbracelet/bubbletea"
 )
 
 func main() {
-	m := NewModel()
-
-	p := tea.NewProgram(m)
+	p := tea.NewProgram(NewModel(), tea.WithAltScreen())
 	if _,err := p.Run(); err != nil {
-		log.Fatalf("unable to run tui: %v", err)
+		fmt.Println("there was another error: %v", err)
+		os.Exit(1)
 	}
 }

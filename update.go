@@ -18,11 +18,23 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd){
 					switch msg.String(){
 					case "q":
 						return m, tea.Quit
+					case "up", "k":
+						if m.cursor > 0 {
+							m.cursor --
+						}
+					case "down", "j":
+						if m.cursor < len(menueItems) -1 {
+							m.cursor++ 
+						}
+					case "enter":
+						m.state = bodyView
 					}
 				case bodyView:
 					switch msg.String(){
-					case "q":
-						return m, tea.Quit
+						case "q":
+							return m, tea.Quit
+						case "esc", "backspace":
+							m.state = listView
 					}
 			}
 			
@@ -30,3 +42,4 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd){
 	}
 	return m, nil
 }
+
