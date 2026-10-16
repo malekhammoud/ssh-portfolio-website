@@ -14,23 +14,23 @@ func (m model) View() string {
 	return "?"
 }
 func (m model) renderTitle() string {
-	return "I am Builder. \n\n" + 
-			"Press any key to continue"
+	return titleStyle.Render("I am Builder.") + "\n\n" + 
+			hintStyle.Render("Press any key to continue")
 }
 
 func (m model) renderList() string {
 	var b strings.Builder
-	b.WriteString("I am Malek Hammoud.\n")
+	b.WriteString(titleStyle.Render("I am Malek Hammoud.")+"\n")
 
 	for i, item := range menueItems {
 		if i == m.cursor{
-			b.WriteString("> " + item + "\n")
+			b.WriteString(selectedStyle.Render("> " + item) + "\n")
 		} else {
-			b.WriteString(" " + item + "\n")
+			b.WriteString(itemStyle.Render(" " + item) + "\n")
 		}
 	}
 
-	b.WriteString("\nup/down move - enter select\n")
+	b.WriteString("\n" + hintStyle.Render("up/down move - enter select - q to quit"))
 	return b.String()
 
 }
@@ -46,5 +46,9 @@ func (m model) renderBody() string {
 		default:
 			body = "email: malek@malekhammoud.com"
 	}
-	return menueItems[m.cursor] + "\n\n" + body
+	return titleStyle.Render(menueItems[m.cursor]) + 
+		   "\n\n" + 
+		   bodyStyle.Render(body)+
+		   "\n\n" + 
+		   hintStyle.Render("esc back - q quit ")
 }
