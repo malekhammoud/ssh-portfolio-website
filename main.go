@@ -1,17 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	tea "github.com/charmbracelet/bubbletea"
+)
 
 func main() {
-	var name = "Malek Hammoud."
-	fmt.Println("Welcome.")
-	fmt.Printf("I'm %s \n", name)
-	fmt.Println("I Build Software that has to work")
+	m := NewModel()
 
-
-	var userName string
-	fmt.Println("What's your name?")
-	fmt.Print(">")
-	fmt.Scan(&userName)
-	fmt.Printf("hello %s \n", userName)
+	p := tea.NewProgram(m)
+	if _,err := p.Run(); err != nil {
+		log.Fatalf("unable to run tui: %v", err)
+	}
 }
