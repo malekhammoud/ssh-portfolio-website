@@ -37,8 +37,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd){
 							m.state = listView
 					}
 			}
-			
-		//TODO: rest of cases(up, down, esc, etc)	
 	}
 	return m, nil
 }
